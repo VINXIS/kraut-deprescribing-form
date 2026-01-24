@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission</title>
+    <link rel="stylesheet" href="index.css">
+    <script defer src="index.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Page 1 -->
+        <div class="page" id="page1">
+            <div class="header">
+                <h1>Deprescribing checklist</h1>
+                <div class="patient-sticker" id="patientSticker">
+                    PATIENT STICKER
+                </div>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 20%;">Discontinue</th>
+                        <th style="width: 40%;"></th>
+                        <th class="checkbox-cell">NA</th>
+                        <th class="checkbox-cell">Yes</th>
+                        <th class="checkbox-cell">No</th>
+                        <th style="width: 25%;">Monitoring</th>
+                    </tr>
+                </thead>
+                <tbody id="checklistBody">
+                    <!-- Fracture prevention -->
+                    <tr>
+                        <td colspan="6" class="section-header">Fracture prevention</td>
+                    </tr>
+                    <tr data-medication="vitamin-d">
+                        <td>Vitamin D<span class="superscript">1</span></td>
+                        <td>In all cases</td>
+                        <td class="checkbox-cell" data-option="na"></td>
+                        <td class="checkbox-cell" data-option="yes"></td>
+                        <td class="checkbox-cell" data-option="no"></td>
+                        <td></td>
+                    </tr>
+                    <tr data-medication="calcium">
+                        <td>Calcium<span class="superscript">1</span></td>
+                        <td>In all cases</td>
+                        <td class="checkbox-cell" data-option="na"></td>
+                        <td class="checkbox-cell" data-option="yes"></td>
+                        <td class="checkbox-cell" data-option="no"></td>
+                        <td></td>
+                    </tr>
+                    <tr data-medication="bisphosphonate">
+                        <td>Bisphosphonate</td>
+                        <td>On for > 5 years</td>
+                        <td class="checkbox-cell" data-option="na"></td>
+                        <td class="checkbox-cell" data-option="yes"></td>
+                        <td class="checkbox-cell" data-option="no"></td>
+                        <td></td>
+                    </tr>
+                    
+                    <!-- Cardiovascular -->
+                    <tr>
+                        <td colspan="6" class="section-header">Cardiovascular</td>
+                    </tr>
+                    <tr data-medication="statin">
+                        <td>Statin</td>
+                        <td>On for primary prevention</td>
+                        <td class="checkbox-cell" data-option="na"></td>
+                        <td class="checkbox-cell" data-option="yes"></td>
+                        <td class="checkbox-cell" data-option="no"></td>
+                        <td></td>
+                    </tr>
+                    <tr data-medication="acetylsalicylic-acid">
+                        <td>Acetylsalicylic acid</td>
+                        <td>On for primary prevention</td>
+                        <td class="checkbox-cell" data-option="na"></td>
+                        <td class="checkbox-cell" data-option="yes"></td>
+                        <td class="checkbox-cell" data-option="no"></td>
+                        <td></td>
+                    </tr>
+                    <tr data-medication="antihypertensive">
+                        <td>Antihypertensive<span class="superscript">2</span></td>
+                        <td>1) No CHF<br>2) Average systolic BP &lt;130 mmHg</td>
+                        <td class="checkbox-cell" data-option="na"></td>
+                        <td class="checkbox-cell" data-option="yes"></td>
+                        <td class="checkbox-cell" data-option="no"></td>
+                        <td class="monitoring-cell">BP daily x 5 days, target systolic BP ≤150</td>
+                    </tr>
+                    
+                    <!-- Vitamins -->
+                    <tr>
+                        <td colspan="6" class="section-header">Vitamins</td>
+                    </tr>
+                    <tr data-medication="multivitamin">
+                        <td>Multivitamin</td>
+                        <td>In all cases</td>
+                        <td class="checkbox-cell" data-option="na"></td>
+                        <td class="checkbox-cell" data-option="yes"></td>
+                        <td class="checkbox-cell" data-option="no"></td>
+                        <td></td>
+                    </tr>
+                    <tr data-medication="b12">
+                        <td>B12</td>
+                        <td>Last B12 ≥ 160</td>
+                        <td class="checkbox-cell" data-option="na"></td>
+                        <td class="checkbox-cell" data-option="yes"></td>
+                        <td class="checkbox-cell" data-option="no"></td>
+                        <td></td>
+                    </tr>
+                    
+                    <!-- Bladder -->
+                    <tr>
+                        <td colspan="6" class="section-header">Bladder<span class="superscript">3</span></td>
+                    </tr>
+                    <tr data-medication="bph-treatment">
+                        <td>BPH treatment</td>
+                        <td>Urinary incontinence, no history of urinary retention</td>
+                        <td class="checkbox-cell" data-option="na"></td>
+                        <td class="checkbox-cell" data-option="yes"></td>
+                        <td class="checkbox-cell" data-option="no"></td>
+                        <td class="monitoring-cell">Briefs x 5 days to ensure no retention</td>
+                    </tr>
+                    <tr data-medication="overactive-bladder">
+                        <td>Overactive bladder</td>
+                        <td>Urinary incontinence</td>
+                        <td class="checkbox-cell" data-option="na"></td>
+                        <td class="checkbox-cell" data-option="yes"></td>
+                        <td class="checkbox-cell" data-option="no"></td>
+                        <td></td>
+                    </tr>
+                    
+                    <!-- Diabetes -->
+                    <tr>
+                        <td colspan="6" class="section-header">Diabetes</td>
+                    </tr>
+                    <tr data-medication="antihyperglycemic">
+                        <td>Antihyperglycemic<span class="superscript">1</span><br><span style="font-size: 8pt;">(not including insulin)</span></td>
+                        <td>Blood sugar in last 3 months &lt; 9 mmol/L</td>
+                        <td class="checkbox-cell" data-option="na"></td>
+                        <td class="checkbox-cell" data-option="yes"></td>
+                        <td class="checkbox-cell" data-option="no"></td>
+                        <td class="monitoring-cell">Blood sugar QID x 2 days, target ≤ 10 mmol/L</td>
+                    </tr>
+                    
+                    <!-- Other -->
+                    <tr>
+                        <td colspan="6" class="section-header">Other</td>
+                    </tr>
+                    <tr data-medication="acetaminophen">
+                        <td>Acetaminophen</td>
+                        <td>In all cases</td>
+                        <td class="checkbox-cell" data-option="na"></td>
+                        <td class="checkbox-cell" data-option="yes"></td>
+                        <td class="checkbox-cell" data-option="no"></td>
+                        <td class="monitoring-cell">Pain x 5 days</td>
+                    </tr>
+                    <tr data-medication="melatonin">
+                        <td>Melatonin</td>
+                        <td>In all cases</td>
+                        <td class="checkbox-cell" data-option="na"></td>
+                        <td class="checkbox-cell" data-option="yes"></td>
+                        <td class="checkbox-cell" data-option="no"></td>
+                        <td></td>
+                    </tr>
+                    <tr data-medication="iron">
+                        <td>Iron</td>
+                        <td>Change to ferrous gluconate & q2days</td>
+                        <td class="checkbox-cell" data-option="na"></td>
+                        <td class="checkbox-cell" data-option="yes"></td>
+                        <td class="checkbox-cell" data-option="no"></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div style="font-size: 8pt; margin-bottom: 10px;">
+                <span class="superscript">1</span>Do not discontinue if on denosumab. <span class="superscript">2</span>Select one to deprescribe. <span class="superscript">3</span>All bladder medication can be deprescribed.
+            </div>
+            
+            <div class="comments-section">
+                <div class="comments-label">Comments:</div>
+                <textarea class="comments-box" id="comments"></textarea>
+            </div>
+            
+            <div class="footer">
+                ~~~ based on best available evidence; see reverse side ~~~
+            </div>
+            
+            <div class="version">Version 2 July 17, 2025</div>
+        </div>
+        
+        <!-- Page 2 -->
+        <div class="page" id="page2">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;"></th>
+                        <th style="width: 35%;">Source</th>
+                        <th style="width: 40%;">Bottom line</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3" class="section-header">Fracture prevention</td>
+                    </tr>
+                    <tr>
+                        <td>Vitamin D and Calcium</td>
+                        <td>Tools for Practice #374 (<i>adults, 2024</i>)</td>
+                        <td>
+                            <ul style="margin-left: 15px;">
+                                <li>No evidence of fracture reduction with Vitamin D. Vitamin D and calcium might reduce fractures and hip fractures in women in LTC from 11.5% to 10.9 and 1.8% to 1.6%, might increase risk of renal calculi from 2.1 to 2.5%.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bisphosphonate</td>
+                        <td>STOPPFrail (<i>frail older adults, 2017 and 2020</i>)</td>
+                        <td>
+                            <ul style="margin-left: 15px;">
+                                <li>Challenging to administer, adverse effects, and clinical benefit may continue after discontinuing</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="3" class="section-header">Cardiovascular</td>
+                    </tr>
+                    <tr>
+                        <td>Statin</td>
+                        <td>Systematic review and meta-analysis (<i>frail older adults, 2024</i>)</td>
+                        <td>
+                            <ul style="margin-left: 15px;">
+                                <li>No evidence of reduced mortality (primary prevention)</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Acetylsalicylic acid</td>
+                        <td>Canadian Cardiovascular Society guidelines (<i>adults, 2024</i>)</td>
+                        <td>
+                            <ul style="margin-left: 15px;">
+                                <li>No evidence of reduced cardiovascular events (primary prevention)</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Antihypertensives</td>
+                        <td>Narrative review (<i>frail older adults, 2022</i>)</td>
+                        <td>
+                            <ul style="margin-left: 15px;">
+                                <li>No evidence of reduced cardiovascular events, may be harmful (falls, orthostatic hypotension, cognitive decline)</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="3" class="section-header">Vitamins</td>
+                    </tr>
+                    <tr>
+                        <td>Multivitamin</td>
+                        <td>Tools for practice #87 (<i>adults, 2016</i>)</td>
+                        <td>
+                            <ul style="margin-left: 15px;">
+                                <li>No evidence routine use reduces mortality, cardiovascular disease, and/or cancer</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B12</td>
+                        <td>Systematic review (<i>adults, 2021</i>)</td>
+                        <td>
+                            <ul style="margin-left: 15px;">
+                                <li>No evidence of improvement in cognitive function, depressive symptoms, or fatigue when not deficient</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="3" class="section-header">Bladder</td>
+                    </tr>
+                    <tr>
+                        <td>BPH treatment and Overactive Bladder</td>
+                        <td>International Consultation on Incontinence (<i>frail older adults, 2020</i>)</td>
+                        <td>
+                            <ul style="margin-left: 15px;">
+                                <li>Do not treat frail older adults who are incontinent with BPH and OAB medications.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="3" class="section-header">Diabetes</td>
+                    </tr>
+                    <tr>
+                        <td>Antihyperglycemic<span class="superscript">1</span><br>(not including insulin)</td>
+                        <td>STOPPFrail (<i>frail older adults, 2020</i>)</td>
+                        <td>
+                            <ul style="margin-left: 15px;">
+                                <li>Avoid HbA1C target &lt;7.5% (average 10.1 mmol/L glucose) as it is associated with net harm.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="3" class="section-header">Other</td>
+                    </tr>
+                    <tr>
+                        <td>Acetaminophen</td>
+                        <td>Usage in LTC (<i>frail older adults, 2025</i>)</td>
+                        <td>
+                            <ul style="margin-left: 15px;">
+                                <li>No evidence of improvement in pain</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Melatonin</td>
+                        <td>CADTH review (<i>adults, 2022</i>)</td>
+                        <td>
+                            <ul style="margin-left: 15px;">
+                                <li>No evidence it improves any aspect of sleep</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Iron</td>
+                        <td>Tools for practice (<i>older adults, 2015</i>)</td>
+                        <td>
+                            <ul style="margin-left: 15px;">
+                                <li>Select low-dose iron as it has similar efficacy and fewer adverse effects.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="reference-section">
+                <p><strong>References:</strong></p>
+                <p><strong>Fracture prevention:</strong> Young J, Braschi E. Can Fam Physician 2025 Feb;71(2):121; Lavan AH, Gallagher P, Parsons C, et al. Age Ageing. 2017 July;46(4):600-607; Curtin D, Gallagher P, O'Mahony D. Age Ageing. 2021 Feb;50(2):465-471. <strong>Cardiovascular:</strong> Moraiti P, Palla M, Goumas G, et al. Atherosclerosis. 2024;40:160-181; Kraut R, Lundby C, Babenko O, et al. Am Heart J Plus. 2022;17:100166. <strong>Vitamins:</strong> CFPC Learn. TFP #87. Available at: https://cfpclearn.ca/resources/tools-for-practice/tfp-87 (accessed 25 March 2025); Malouf R, Grimley EJ, Areosa SA. Cochrane Database Syst Rev. 2003 Jan 17;(4):CD004514. <strong>Bladder:</strong> Oelke M, Becher K, Castro-Diaz D, et al. Age Ageing. 2015 Sep;44(5):745-55; Curtin D, Gallagher P, O'Mahony D. Age Ageing. 2021 Feb;50(2):465-471. <strong>Diabetes:</strong> Lavan AH, Gallagher P, Parsons C, et al. Age Ageing. 2017 July;46(4):600-607. <strong>Other:</strong> Kraut RY, Chateau D, Walld R, et al. J Am Med Dir Assoc. 2025 Jun 5;26(6):105322; Malouf M, Grimley EJ, Areosa SA. Cochrane Database Syst Rev. 2003 Jan 17;(4):CD004514 Available at: https://cfpclearn.ca/resources/tools-for-practice/older-adults-and-oral-iron-what-about-adverse-effects-and-how-much-iron-should-we-still-apply-in-common-iron-advice-and-not-history-of-bladder-retention <strong>Diabetes:</strong> Lavan AH, Gallagher P, Parsons C, et al. Age Ageing. 2017 July;46(4):600-607; Curtin D, Gallagher P, O'Mahony D. Age Ageing. 2021 Feb;50(2):465-471. <strong>Other:</strong> Kraut RY, Chateau D, Walld R, et al. J Am Med Dir Assoc. 2025 Jun 5;26(6):105322; Hampton T, Barber I, Ciaroni L, Lindblad AJ, Cotton C, Allan GM. Can Fam Physician. 2015 Feb;61(2):159.</p>
+            </div>
+            
+            <div class="version">Version 2 July 17, 2025</div>
+        </div>
+        
+        <div class="submit-section">
+            <button class="btn btn-primary btn-large" id="submitBtn">Submit to Google Sheets</button>
+            <button class="btn btn-secondary btn-large" id="printBtn">Print Form</button>
+        </div>
+    </div>
+
+    <!-- Patient Info Modal -->
+    <div id="patientModal" class="modal">
+        <div class="modal-content">
+            <h2>Patient Information</h2>
+            <div class="form-group">
+                <label for="roomNumber">Room Number:</label>
+                <input type="text" id="roomNumber">
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob">
+            </div>
+            <div class="form-group">
+                <label for="sex">Sex:</label>
+                <input type="text" id="sex">
+            </div>
+            <div class="form-group">
+                <label for="physician">Physician:</label>
+                <input type="text" id="physician">
+            </div>
+            <div class="form-group">
+                <label for="regularMeds">Number of Regular Medications:</label>
+                <input type="number" id="regularMeds" min="0">
+            </div>
+            <div class="form-group">
+                <label for="prnMeds">Number of PRN Medications:</label>
+                <input type="number" id="prnMeds" min="0">
+            </div>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="savePatientInfo">Save</button>
+                <button class="btn btn-secondary" id="cancelPatientInfo">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Medication Name Modal -->
+    <div id="medicationModal" class="modal">
+        <div class="modal-content">
+            <h2>Medication Name</h2>
+            <div class="form-group">
+                <label for="medicationName">Enter medication name:</label>
+                <input type="text" id="medicationName">
+            </div>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="saveMedicationName">Save</button>
+                <button class="btn btn-secondary" id="cancelMedicationName">Cancel</button>
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,24 @@
+{
+  "name": "kraut-deprescribing-form",
+  "version": "1.0.0",
+  "description": "Customized form implementing a PDF format provided by Dr. Roni Kraut for clinical deprescribing data collection",
+  "homepage": "https://github.com/VINXIS/kraut-deprescribing-form#readme",
+  "bugs": {
+    "url": "https://github.com/VINXIS/kraut-deprescribing-form/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VINXIS/kraut-deprescribing-form.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "scripts": {
+    "gulp": "gulp"
+  },
+  "devDependencies": {
+    "gulp": "^5.0.1",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-terser": "^2.1.0"
+  }
+}
