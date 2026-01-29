@@ -444,7 +444,7 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
     };
     console.log(submissionData);
     
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxv7KeKbw40KY04t81KlsrC6iEI6_n98mXLyHoDxWlP1ZXMhJ5sVG6B5PSUxCYWdXOh/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxCD3WBx7BSFp9HVaI3bBaVgmXsa7Gd72a1LrLB61o5BuXAp0Vg4XTV_-QkaEm6yPCi/exec';
     
     try {
         const response = await fetch(GOOGLE_SCRIPT_URL, {
