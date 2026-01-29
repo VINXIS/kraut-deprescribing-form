@@ -324,14 +324,6 @@ th {
         background-color: white;
     }
     
-    .checkbox-cell.selected {
-        background-color: #4CAF50 !important;
-    }
-    
-    .checkbox-cell.selected:hover {
-        background-color: #4CAF50;
-    }
-    
     .monitoring-na {
         background-color: #e0e0e0 !important;
         text-align: center;

@@ -352,14 +352,97 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
         return;
     }
     
-    // Prepare data for submission
-    const submissionData = {
-        timestamp: new Date().toISOString(),
-        ...formData.patientInfo,
-        medications: formData.medications,
-        selections: formData.selections,
-        comments: formData.comments
+    // Helper function to get selection value (NA, Yes, No)
+    const getSelection = (key) => {
+        const sel = formData.selections[key];
+        if (sel === 'na') return 'NA';
+        if (sel === 'yes') return 'Yes';
+        if (sel === 'no') return 'No';
+        return '';
     };
+    
+    // Helper function to get medication name
+    const getMedName = (key) => {
+        return formData.medications[key]?.name || '';
+    };
+    
+    // Prepare data in exact CSV column order
+    console.log(formData);
+    const submissionData = {
+        // Room info (columns 1-8)
+        roomNumber: formData.patientInfo.roomNumber || '',
+        dob: formData.patientInfo.dob || '',
+        sex: formData.patientInfo.sex || '',
+        physician: formData.patientInfo.physician || '',
+        regularMeds: formData.patientInfo.regularMeds || '',
+        prnMeds: formData.patientInfo.prnMeds || '',
+        filledOutBy: '', // You can add this field if needed
+        date: new Date().toLocaleDateString(),
+        
+        // Vitamin D (column 9)
+        vitaminD: getSelection('vitamin-d'),
+        
+        // Calcium (column 10)
+        calcium: getSelection('calcium'),
+        
+        // Bisphosphonate (columns 11-12)
+        bisphosphonate: getSelection('bisphosphonate'),
+        bisphosphonateName: getMedName('bisphosphonate'),
+        
+        // Statin (columns 13-14)
+        statin: getSelection('statin'),
+        statinName: getMedName('statin'),
+        
+        // ASA (column 15)
+        asa: getSelection('acetylsalicylic-acid'),
+        
+        // Antihypertensive (columns 16-17)
+        antihypertensive: getSelection('antihypertensive'),
+        antihypertensiveName: getMedName('antihypertensive'),
+        
+        // Multivitamin (column 18)
+        multivitamin: getSelection('multivitamin'),
+        
+        // B12 (column 19)
+        b12: getSelection('b12'),
+        
+        // BPH (columns 20-21)
+        bph: getSelection('bph-treatment'),
+        bphName: getMedName('bph-treatment'),
+        
+        // Overactive bladder (columns 22-23)
+        overactiveBladder: getSelection('overactive-bladder'),
+        overactiveBladderName: getMedName('overactive-bladder'),
+        
+        // Antihyperglycemic (columns 24-25)
+        antihyperglycemic: getSelection('antihyperglycemic'),
+        antihyperglycemicName: getMedName('antihyperglycemic'),
+        
+        // Acetaminophen (column 26)
+        acetaminophen: getSelection('acetaminophen'),
+        acetaminophenDose: formData.medications['acetaminophen']?.dose || '',
+        acetaminophenFrequency: formData.medications['acetaminophen']?.frequency || '',
+        
+        // Melatonin (column 27)
+        melatonin: getSelection('melatonin'),
+        
+        // Iron (column 28)
+        iron: getSelection('iron'),
+        ironName: formData.medications['iron']?.name || '',
+        ironFrequency: formData.medications['iron']?.frequency || '',
+        
+        // Comments (column 29)
+        comments: formData.comments || '',
+        
+        // Monitoring columns (30-35) - leave empty for now, to be filled during monitoring
+        needsMonitoring: '',
+        monitoringDate: '',
+        averageBP: '',
+        briefsWet: '',
+        averageBloodSugar: '',
+        averagePainScore: ''
+    };
+    console.log(submissionData);
     
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxv7KeKbw40KY04t81KlsrC6iEI6_n98mXLyHoDxWlP1ZXMhJ5sVG6B5PSUxCYWdXOh/exec';
     
