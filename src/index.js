@@ -367,7 +367,6 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
     };
     
     // Prepare data in exact CSV column order
-    console.log(formData);
     const submissionData = {
         // Room info (columns 1-8)
         roomNumber: formData.patientInfo.roomNumber || '',
@@ -442,7 +441,6 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
         averageBloodSugar: '',
         averagePainScore: ''
     };
-    console.log(submissionData);
     
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxCD3WBx7BSFp9HVaI3bBaVgmXsa7Gd72a1LrLB61o5BuXAp0Vg4XTV_-QkaEm6yPCi/exec';
     
