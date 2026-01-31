@@ -222,7 +222,7 @@
                     </tr>
                     <tr>
                         <td>Statin</td>
-                        <td>Systematic review and meta-analysis (<i>frail older adults, 2024</i>)</td>
+                        <td>Systematic review and meta-analysis (<i>Mondal 2024</i>)</td>
                         <td>
                             <ul style="margin-left: 15px;">
                                 <li>No evidence of reduced mortality (primary prevention)</li>
@@ -240,7 +240,7 @@
                     </tr>
                     <tr>
                         <td>Antihypertensives</td>
-                        <td>Narrative review (<i>frail older adults, 2022</i>)</td>
+                        <td>Narrative review (<i>Kraut 2022</i>)</td>
                         <td>
                             <ul style="margin-left: 15px;">
                                 <li>No evidence of reduced cardiovascular events, may be harmful (falls, orthostatic hypotension, cognition)</li>
@@ -262,7 +262,7 @@
                     </tr>
                     <tr>
                         <td>B12</td>
-                        <td>Systematic review (<i>adults, 2021</i>)</td>
+                        <td>Cochrane systematic review (<i>Malouf 2003</i>)</td>
                         <td>
                             <ul style="margin-left: 15px;">
                                 <li>No evidence of improvement in cognitive function, depressive symptoms, or fatigue when not deficient</li>
@@ -275,7 +275,7 @@
                     </tr>
                     <tr>
                         <td>BPH treatment and Overactive Bladder</td>
-                        <td>International Consultation on Incontinence (<i>frail older adults, 2020</i>)</td>
+                        <td>BPH: STOPPFrail guidelines (<i>Curtin 2020</i>); OAB: International Consultation on Incontinence (<i>Gibson 2020</i>)</td>
                         <td>
                             <ul style="margin-left: 15px;">
                                 <li>Do not treat frail older adults who are incontinent with BPH and OAB medications.</li>
@@ -288,7 +288,7 @@
                     </tr>
                     <tr>
                         <td>Antihyperglycemic<span class="superscript">1</span><br>(not including insulin)</td>
-                        <td>STOPPFrail (<i>frail older adults, 2020</i>)</td>
+                        <td>STOPPFrail guidelines (<i>Curtin 2020</i>)</td>
                         <td>
                             <ul style="margin-left: 15px;">
                                 <li>Avoid HbA1C target &lt;7.5% (average 10.1 mmol/L glucose) as it is associated with net harm.</li>
@@ -301,7 +301,7 @@
                     </tr>
                     <tr>
                         <td>Acetaminophen</td>
-                        <td>Usage in LTC (<i>frail older adults, 2025</i>)</td>
+                        <td>Acetaminophen usage in long-term care (<i>Kraut 2025</i>)</td>
                         <td>
                             <ul style="margin-left: 15px;">
                                 <li>No evidence of improvement in pain</li>
@@ -310,7 +310,7 @@
                     </tr>
                     <tr>
                         <td>Melatonin</td>
-                        <td>CADTH review (<i>adults, 2022</i>)</td>
+                        <td>CADTH review (<i>2022</i>)</td>
                         <td>
                             <ul style="margin-left: 15px;">
                                 <li>No evidence it improves any aspect of sleep</li>
@@ -319,7 +319,7 @@
                     </tr>
                     <tr>
                         <td>Iron</td>
-                        <td>Tools for practice (<i>older adults, 2015</i>)</td>
+                        <td>Tools for Practice #30 and #284 (<i>2015 and 2021</i>)</td>
                         <td>
                             <ul style="margin-left: 15px;">
                                 <li>Select low-dose iron as it has similar efficacy and fewer adverse effects.</li>
@@ -340,6 +340,7 @@
         <div class="submit-section">
             <button class="btn btn-primary btn-large" id="submitBtn">Submit to Google Sheets</button>
             <button class="btn btn-secondary btn-large" id="printBtn">Print Form</button>
+            <button class="btn btn-secondary btn-large" id="referencesBtn" type="button">View References</button>
         </div>
     </div>
 
@@ -440,6 +441,16 @@
             <div class="modal-buttons">
                 <button class="btn btn-primary" id="saveIron">Save</button>
                 <button class="btn btn-secondary" id="cancelIron">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="referencesModal" class="modal">
+        <div class="modal-content">
+            <h2>References</h2>
+            <div id="referencesContent" class="evidence-content"></div>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="closeReferences" type="button">Close</button>
             </div>
         </div>
     </div>

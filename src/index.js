@@ -18,7 +18,7 @@ const evidenceData = {
     'statin': {
         title: 'Statin',
         content: `<p>No evidence of reduced mortality (primary prevention).</p>
-        <p class="evidence-source">Systematic review and meta-analysis (frail older adults, 2024)</p>`
+        <p class="evidence-source">Systematic review and meta-analysis (Mondal 2024)</p>`
     },
     'acetylsalicylic-acid': {
         title: 'Acetylsalicylic Acid',
@@ -28,7 +28,7 @@ const evidenceData = {
     'antihypertensive': {
         title: 'Antihypertensive',
         content: `<p>No evidence of reduced cardiovascular events, may be harmful (falls, orthostatic hypotension, cognition).</p>
-        <p class="evidence-source">Narrative review (frail older adults, 2022)</p>`
+        <p class="evidence-source">Narrative review (Kraut 2022)</p>`
     },
     'multivitamin': {
         title: 'Multivitamin',
@@ -38,37 +38,37 @@ const evidenceData = {
     'b12': {
         title: 'B12',
         content: `<p>No evidence of improvement in cognitive function, depressive symptoms, or fatigue when not deficient.</p>
-        <p class="evidence-source">Systematic review (adults, 2021)</p>`
+        <p class="evidence-source">Cochrane systematic review (Malouf 2003)</p>`
     },
     'bph-treatment': {
         title: 'BPH Treatment',
-        content: `<p>Do not treat frail older adults who are incontinent with BPH and OAB medications.</p>
-        <p class="evidence-source">International Consultation on Incontinence (frail older adults, 2020)</p>`
+        content: `<p>Do not treat frail older adults who are incontinent with BPH medications.</p>
+        <p class="evidence-source">STOPPFrail guidelines (Curtin 2020)</p>`
     },
     'overactive-bladder': {
         title: 'Overactive Bladder',
-        content: `<p>Do not treat frail older adults who are incontinent with BPH and OAB medications.</p>
-        <p class="evidence-source">International Consultation on Incontinence (frail older adults, 2020)</p>`
+        content: `<p>Do not treat frail older adults who are incontinent with overactive bladder (OAB) medications.</p>
+        <p class="evidence-source">International Consultation on Incontinence (Gibson 2020)</p>`
     },
     'antihyperglycemic': {
         title: 'Antihyperglycemic',
         content: `<p>Avoid HbA1C target &lt;7.5% (average 10.1 mmol/L glucose) as it is associated with net harm.</p>
-        <p class="evidence-source">STOPPFrail (frail older adults, 2020)</p>`
+        <p class="evidence-source">STOPPFrail guidelines (Curtin 2020)</p>`
     },
     'acetaminophen': {
         title: 'Acetaminophen',
         content: `<p>No evidence of improvement in pain.</p>
-        <p class="evidence-source">Usage in LTC (frail older adults, 2025)</p>`
+        <p class="evidence-source">Acetaminophen usage in long-term care (Kraut 2025)</p>`
     },
     'melatonin': {
         title: 'Melatonin',
         content: `<p>No evidence it improves any aspect of sleep.</p>
-        <p class="evidence-source">CADTH review (adults, 2022)</p>`
+        <p class="evidence-source">CADTH review (2022)</p>`
     },
     'iron': {
         title: 'Iron',
         content: `<p>Select low-dose iron as it has similar efficacy and fewer adverse effects.</p>
-        <p class="evidence-source">Tools for practice (older adults, 2015)</p>`
+        <p class="evidence-source">Tools for Practice #30 and #284 (2015 and 2021)</p>`
     }
 };
 
@@ -202,6 +202,34 @@ document.querySelectorAll('.medication-name').forEach(elem => {
 document.getElementById('closeEvidence').addEventListener('click', function() {
     document.getElementById('evidenceModal').style.display = 'none';
 });
+
+// References modal (screen-only)
+const referencesBtn = document.getElementById('referencesBtn');
+if (referencesBtn) {
+    referencesBtn.addEventListener('click', function() {
+        const referenceSection = document.querySelector('.reference-section');
+        const referencesContent = document.getElementById('referencesContent');
+
+        if (referenceSection && referencesContent) {
+            referencesContent.innerHTML = referenceSection.innerHTML;
+        }
+
+        const modal = document.getElementById('referencesModal');
+        if (modal) {
+            modal.style.display = 'block';
+        }
+    });
+}
+
+const closeReferences = document.getElementById('closeReferences');
+if (closeReferences) {
+    closeReferences.addEventListener('click', function() {
+        const modal = document.getElementById('referencesModal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    });
+}
 
 // Medication selection handling
 document.querySelectorAll('.checkbox-cell[data-option]').forEach(cell => {

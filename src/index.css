@@ -307,6 +307,10 @@ th {
     .submit-section {
         display: none;
     }
+
+    .modal {
+        display: none !important;
+    }
     
     .patient-sticker {
         cursor: default;
