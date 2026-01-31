@@ -77,6 +77,7 @@ const formData = {
     patientInfo: {},
     medications: {},
     selections: {},
+    noReasons: {},
     comments: ''
 };
 
@@ -122,6 +123,16 @@ function validateForm() {
             errors.push(`Please select NA, Yes, or No for ${med.replace(/-/g, ' ')}`);
         }
     }
+
+    // Check all "No" selections have a reason
+    for (const med of allMedications) {
+        if (formData.selections[med] === 'no') {
+            const reason = (formData.noReasons?.[med] || '').trim();
+            if (!reason) {
+                errors.push(`Please provide a reason for selecting No for ${med.replace(/-/g, ' ')}`);
+            }
+        }
+    }
     
     // Check medications that need details
     for (const [med, detailType] of Object.entries(medicationsNeedingDetails)) {
@@ -148,6 +159,31 @@ function validateForm() {
     }
     
     return errors;
+}
+
+function showNoReasonModal(medicationKey) {
+    const textarea = document.getElementById('noReasonText');
+    if (textarea) {
+        textarea.value = formData.noReasons?.[medicationKey] || '';
+        // Focus after paint
+        setTimeout(() => textarea.focus(), 0);
+    }
+    const modal = document.getElementById('noReasonModal');
+    if (modal) {
+        modal.style.display = 'block';
+    }
+}
+
+function clearSelectionForMedication(medicationKey) {
+    const row = document.querySelector(`tr[data-medication="${medicationKey}"]`);
+    if (row) {
+        row.querySelectorAll('.checkbox-cell[data-option]').forEach(c => {
+            c.classList.remove('selected');
+            c.textContent = '';
+        });
+    }
+    delete formData.selections[medicationKey];
+    delete formData.noReasons[medicationKey];
 }
 
 // Patient Info Modal
@@ -253,6 +289,11 @@ document.querySelectorAll('.checkbox-cell[data-option]').forEach(cell => {
         
         // Store selection
         formData.selections[medicationKey] = option;
+
+        // If switching away from "No", ensure the reason won't be submitted
+        if (option !== 'no') {
+            delete formData.noReasons[medicationKey];
+        }
         
         // Don't show popup for N/A
         if (option === 'na') {
@@ -282,6 +323,9 @@ document.querySelectorAll('.checkbox-cell[data-option]').forEach(cell => {
             // Show regular medication name modal
             document.getElementById('medicationName').value = formData.medications[medicationKey]?.name || '';
             document.getElementById('medicationModal').style.display = 'block';
+        } else if (option === 'no') {
+            // No other popup required; ask for reason
+            showNoReasonModal(medicationKey);
         }
     });
 });
@@ -293,6 +337,10 @@ document.getElementById('saveMedicationName').addEventListener('click', function
         formData.medications[currentMedicationRow] = { name: medicationName };
     }
     document.getElementById('medicationModal').style.display = 'none';
+
+    if (currentMedicationRow && currentOption === 'no') {
+        showNoReasonModal(currentMedicationRow);
+    }
 });
 
 document.getElementById('cancelMedicationName').addEventListener('click', function() {
@@ -306,6 +354,7 @@ document.getElementById('cancelMedicationName').addEventListener('click', functi
             });
         }
         delete formData.selections[currentMedicationRow];
+        delete formData.noReasons[currentMedicationRow];
     }
     document.getElementById('medicationModal').style.display = 'none';
 });
@@ -318,6 +367,10 @@ document.getElementById('saveAcetaminophen').addEventListener('click', function(
         formData.medications[currentMedicationRow] = { dose, frequency };
     }
     document.getElementById('acetaminophenModal').style.display = 'none';
+
+    if (currentMedicationRow && currentOption === 'no') {
+        showNoReasonModal(currentMedicationRow);
+    }
 });
 
 document.getElementById('cancelAcetaminophen').addEventListener('click', function() {
@@ -330,6 +383,7 @@ document.getElementById('cancelAcetaminophen').addEventListener('click', functio
             });
         }
         delete formData.selections[currentMedicationRow];
+        delete formData.noReasons[currentMedicationRow];
     }
     document.getElementById('acetaminophenModal').style.display = 'none';
 });
@@ -342,7 +396,37 @@ document.getElementById('saveIron').addEventListener('click', function() {
         formData.medications[currentMedicationRow] = { name, frequency };
     }
     document.getElementById('ironModal').style.display = 'none';
+
+    if (currentMedicationRow && currentOption === 'no') {
+        showNoReasonModal(currentMedicationRow);
+    }
 });
+
+// No-reason modal
+const saveNoReasonBtn = document.getElementById('saveNoReason');
+if (saveNoReasonBtn) {
+    saveNoReasonBtn.addEventListener('click', function() {
+        const reason = (document.getElementById('noReasonText')?.value || '').trim();
+        if (!reason) {
+            alert('Please enter a reason.');
+            return;
+        }
+        if (currentMedicationRow) {
+            formData.noReasons[currentMedicationRow] = reason;
+        }
+        document.getElementById('noReasonModal').style.display = 'none';
+    });
+}
+
+const cancelNoReasonBtn = document.getElementById('cancelNoReason');
+if (cancelNoReasonBtn) {
+    cancelNoReasonBtn.addEventListener('click', function() {
+        if (currentMedicationRow) {
+            clearSelectionForMedication(currentMedicationRow);
+        }
+        document.getElementById('noReasonModal').style.display = 'none';
+    });
+}
 
 document.getElementById('cancelIron').addEventListener('click', function() {
     if (currentMedicationRow) {
@@ -354,6 +438,7 @@ document.getElementById('cancelIron').addEventListener('click', function() {
             });
         }
         delete formData.selections[currentMedicationRow];
+        delete formData.noReasons[currentMedicationRow];
     }
     document.getElementById('ironModal').style.display = 'none';
 });
@@ -393,6 +478,11 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
     const getMedName = (key) => {
         return formData.medications[key]?.name || '';
     };
+
+    // Helper function to get "No" reason (only when current selection is No)
+    const getNoReason = (key) => {
+        return formData.selections[key] === 'no' ? (formData.noReasons[key] || '') : '';
+    };
     
     // Prepare data in exact CSV column order
     const submissionData = {
@@ -408,55 +498,69 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
         
         // Vitamin D (column 9)
         vitaminD: getSelection('vitamin-d'),
+        vitaminDNoReason: getNoReason('vitamin-d'),
         
         // Calcium (column 10)
         calcium: getSelection('calcium'),
+        calciumNoReason: getNoReason('calcium'),
         
         // Bisphosphonate (columns 11-12)
         bisphosphonate: getSelection('bisphosphonate'),
         bisphosphonateName: getMedName('bisphosphonate'),
+        bisphosphonateNoReason: getNoReason('bisphosphonate'),
         
         // Statin (columns 13-14)
         statin: getSelection('statin'),
         statinName: getMedName('statin'),
+        statinNoReason: getNoReason('statin'),
         
         // ASA (column 15)
         asa: getSelection('acetylsalicylic-acid'),
+        asaNoReason: getNoReason('acetylsalicylic-acid'),
         
         // Antihypertensive (columns 16-17)
         antihypertensive: getSelection('antihypertensive'),
         antihypertensiveName: getMedName('antihypertensive'),
+        antihypertensiveNoReason: getNoReason('antihypertensive'),
         
         // Multivitamin (column 18)
         multivitamin: getSelection('multivitamin'),
+        multivitaminNoReason: getNoReason('multivitamin'),
         
         // B12 (column 19)
         b12: getSelection('b12'),
+        b12NoReason: getNoReason('b12'),
         
         // BPH (columns 20-21)
         bph: getSelection('bph-treatment'),
         bphName: getMedName('bph-treatment'),
+        bphNoReason: getNoReason('bph-treatment'),
         
         // Overactive bladder (columns 22-23)
         overactiveBladder: getSelection('overactive-bladder'),
         overactiveBladderName: getMedName('overactive-bladder'),
+        overactiveBladderNoReason: getNoReason('overactive-bladder'),
         
         // Antihyperglycemic (columns 24-25)
         antihyperglycemic: getSelection('antihyperglycemic'),
         antihyperglycemicName: getMedName('antihyperglycemic'),
+        antihyperglycemicNoReason: getNoReason('antihyperglycemic'),
         
         // Acetaminophen (column 26)
         acetaminophen: getSelection('acetaminophen'),
         acetaminophenDose: formData.medications['acetaminophen']?.dose || '',
         acetaminophenFrequency: formData.medications['acetaminophen']?.frequency || '',
+        acetaminophenNoReason: getNoReason('acetaminophen'),
         
         // Melatonin (column 27)
         melatonin: getSelection('melatonin'),
+        melatoninNoReason: getNoReason('melatonin'),
         
         // Iron (column 28)
         iron: getSelection('iron'),
         ironName: formData.medications['iron']?.name || '',
         ironFrequency: formData.medications['iron']?.frequency || '',
+        ironNoReason: getNoReason('iron'),
         
         // Comments (column 29)
         comments: formData.comments || '',
@@ -470,7 +574,7 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
         averagePainScore: ''
     };
     
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxCD3WBx7BSFp9HVaI3bBaVgmXsa7Gd72a1LrLB61o5BuXAp0Vg4XTV_-QkaEm6yPCi/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzwca7-4S1LJy6zabQkv_CCe74PoZ5DQJZ2UYR2avUlPomXpopx-pVA7Gu2YkgOvyTk/exec';
     
     try {
         const response = await fetch(GOOGLE_SCRIPT_URL, {

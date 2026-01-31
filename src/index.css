@@ -217,6 +217,16 @@ th {
     font-size: 10pt;
 }
 
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 10pt;
+    font-family: Arial, sans-serif;
+    resize: vertical;
+}
+
 .modal-buttons {
     display: flex;
     gap: 10px;
