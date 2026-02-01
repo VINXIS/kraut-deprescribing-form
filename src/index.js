@@ -593,7 +593,7 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
         averagePainScore: ''
     };
     
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzwca7-4S1LJy6zabQkv_CCe74PoZ5DQJZ2UYR2avUlPomXpopx-pVA7Gu2YkgOvyTk/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzVdN-WSSqSScR7KcKE1g6o458ds43zBGgrgGKa_uGBvJrs8aTK70ppyy-HD6y_RUlE/exec';
     
     try {
         const response = await fetch(GOOGLE_SCRIPT_URL, {
