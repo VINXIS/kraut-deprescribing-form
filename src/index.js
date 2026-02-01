@@ -489,6 +489,19 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
     const getNoReason = (key) => {
         return formData.selections[key] === 'no' ? (formData.noReasons[key] || '') : '';
     };
+
+
+    // Formats to 2026-02-01 14:03:22
+    const formatDateTimeForSheets = (date) => {
+        const pad2 = (n) => String(n).padStart(2, '0');
+        const year = date.getFullYear();
+        const month = pad2(date.getMonth() + 1);
+        const day = pad2(date.getDate());
+        const hours = pad2(date.getHours());
+        const minutes = pad2(date.getMinutes());
+        const seconds = pad2(date.getSeconds());
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    };
     
     // Prepare data in exact CSV column order
     const submissionData = {
@@ -500,7 +513,7 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
         regularMeds: formData.patientInfo.regularMeds || '',
         prnMeds: formData.patientInfo.prnMeds || '',
         filledOutBy: '', // You can add this field if needed
-        date: new Date().toLocaleDateString(),
+        date: formatDateTimeForSheets(new Date()),
         
         // Vitamin D (column 9)
         vitaminD: getSelection('vitamin-d'),
