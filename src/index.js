@@ -114,6 +114,7 @@ function validateForm() {
     // Check patient info
     if (!formData.patientInfo.roomNumber || !formData.patientInfo.dob || 
         !formData.patientInfo.sex || !formData.patientInfo.physician ||
+        !formData.patientInfo.filledOutBy ||
         !formData.patientInfo.regularMeds || !formData.patientInfo.prnMeds) {
         errors.push('Patient information is incomplete. Please fill in all patient details by clicking PATIENT STICKER.');
     }
@@ -203,6 +204,7 @@ document.getElementById('savePatientInfo').addEventListener('click', function() 
         dob: document.getElementById('dob').value,
         sex: document.getElementById('sex').value,
         physician: document.getElementById('physician').value,
+        filledOutBy: document.getElementById('filledOutBy').value,
         regularMeds: document.getElementById('regularMeds').value,
         prnMeds: document.getElementById('prnMeds').value
     };
@@ -215,7 +217,8 @@ document.getElementById('savePatientInfo').addEventListener('click', function() 
             Room: ${patientInfo.roomNumber}<br>
             DOB: ${patientInfo.dob}<br>
             Sex: ${patientInfo.sex}<br>
-            Physician: ${patientInfo.physician}
+            Physician: ${patientInfo.physician}<br>
+            By: ${patientInfo.filledOutBy}
         </div>
     `;
     
@@ -512,7 +515,7 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
         physician: formData.patientInfo.physician || '',
         regularMeds: formData.patientInfo.regularMeds || '',
         prnMeds: formData.patientInfo.prnMeds || '',
-        filledOutBy: '', // You can add this field if needed
+        filledOutBy: formData.patientInfo.filledOutBy || '',
         date: formatDateTimeForSheets(new Date()),
         
         // Vitamin D (column 9)
