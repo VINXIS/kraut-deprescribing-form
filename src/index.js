@@ -109,12 +109,18 @@ const medicationsNeedingDetails = {
 // Validation function
 function validateForm() {
     const errors = [];
+    const allowedSexValues = new Set(['Male', 'Female']);
     
     // Check patient info
     if (!formData.patientInfo.roomNumber || !formData.patientInfo.dob || 
         !formData.patientInfo.sex || !formData.patientInfo.physician ||
         !formData.patientInfo.regularMeds || !formData.patientInfo.prnMeds) {
         errors.push('Patient information is incomplete. Please fill in all patient details by clicking PATIENT STICKER.');
+    }
+
+    const sexValue = (formData.patientInfo.sex || '').trim();
+    if (!allowedSexValues.has(sexValue)) {
+        errors.push('Please select Sex by clicking PATIENT STICKER.');
     }
     
     // Check all medications have a selection
