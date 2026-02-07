@@ -1,3 +1,46 @@
+const LOCATION_CONFIG = {
+    kingston: {
+        label: 'Kingston',
+        scriptUrl: 'https://script.google.com/macros/s/AKfycbzVdN-WSSqSScR7KcKE1g6o458ds43zBGgrgGKa_uGBvJrs8aTK70ppyy-HD6y_RUlE/exec'
+    },
+    edmonton: {
+        label: 'Edmonton',
+        scriptUrl: ''
+    }
+};
+
+const getLocationConfig = () => {
+    const params = new URLSearchParams(window.location.search);
+    const rawLocation = params.get('location');
+    if (!rawLocation) {
+        return null;
+    }
+    const key = rawLocation.trim().toLowerCase();
+    return LOCATION_CONFIG[key] || null;
+};
+
+const renderInvalidUrlMessage = () => {
+    const exampleUrl = `${window.location.origin}${window.location.pathname}?location=Kingston`;
+    document.title = 'Invalid URL';
+    document.body.innerHTML = `
+        <main style="padding: 24px; font-family: Arial, sans-serif;">
+            <h1 style="margin: 0 0 12px 0; font-size: 20px;">Invalid URL</h1>
+            <p style="margin: 0 0 8px 0;">This link needs a location at the end.</p>
+            <p style="margin: 0 0 8px 0;">Use Kingston or Edmonton.</p>
+            <p style="margin: 0;">Example: <a href="${exampleUrl}">${exampleUrl}</a></p>
+        </main>
+    `;
+};
+
+const locationConfig = getLocationConfig();
+if (!locationConfig || !locationConfig.scriptUrl) {
+    renderInvalidUrlMessage();
+    // Stop running the rest of the app when the URL is invalid.
+    throw new Error('Invalid URL: missing or unsupported location.');
+}
+
+const GOOGLE_SCRIPT_URL = locationConfig.scriptUrl;
+
 // Evidence database
 const evidenceData = {
     'vitamin-d': {
@@ -595,8 +638,6 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
         averageBloodSugar: '',
         averagePainScore: ''
     };
-    
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzVdN-WSSqSScR7KcKE1g6o458ds43zBGgrgGKa_uGBvJrs8aTK70ppyy-HD6y_RUlE/exec';
     
     try {
         const response = await fetch(GOOGLE_SCRIPT_URL, {
