@@ -5,7 +5,7 @@ const LOCATION_CONFIG = {
     },
     edmonton: {
         label: 'Edmonton',
-        scriptUrl: ''
+        scriptUrl: 'https://script.google.com/macros/s/AKfycbz-NaUPjN-WvqhX0fAiIoc7TX3ugJKtXAa9TQqj5OH9AtD_8EFDcQ4QgoInarB3jGXzaA/exec'
     }
 };
 
