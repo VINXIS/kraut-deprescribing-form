@@ -295,7 +295,7 @@ th {
     }
     
     .page-1 {
-        page-break-after: always;
+        break-after: page;
     }
     
     .page-2 {
