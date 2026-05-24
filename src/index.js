@@ -30,7 +30,7 @@ const renderInvalidUrlMessage = () => {
         <main style="padding: 24px; font-family: Arial, sans-serif;">
             <h1 style="margin: 0 0 12px 0; font-size: 20px;">Invalid URL</h1>
             <p style="margin: 0 0 8px 0;">This link needs a location at the end.</p>
-            <p style="margin: 0 0 8px 0;">Use Kingston or Edmonton.</p>
+            <p style="margin: 0 0 8px 0;">Use a location like ptcc.</p>
             <p style="margin: 0;">Example: <a href="${exampleUrl}">${exampleUrl}</a></p>
         </main>
     `;
