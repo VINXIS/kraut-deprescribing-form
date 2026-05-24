@@ -3,9 +3,13 @@ const LOCATION_CONFIG = {
         label: 'Kingston',
         scriptUrl: 'https://script.google.com/macros/s/AKfycbzVdN-WSSqSScR7KcKE1g6o458ds43zBGgrgGKa_uGBvJrs8aTK70ppyy-HD6y_RUlE/exec'
     },
-    edmonton: {
-        label: 'Edmonton',
-        scriptUrl: 'https://script.google.com/macros/s/AKfycbxfXH9qu1fzCUCu0tx7vePK_-CuRBoP5uGXUZMtaXJqSruiEHZWiJ1o4NFuzJ8j6xaE6g/exec'
+    ptcc: {
+        label: 'Kingston PTCC',
+        scriptUrl: 'https://script.google.com/macros/s/AKfycbxrKSR86k3dj_1MEP0oQrnmJJlFrTZuKRx-Hr-SdST9rEG4rCmxnn4Nqo7hhpDYVxosdA/exec'
+    },
+    rideaucrest: {
+        label: 'Kingston Rideaucrest',
+        scriptUrl: 'https://script.google.com/macros/s/AKfycbzyflzrCy6aNZQ9zCx5nxwW6QNjDp7EwW44x8nrp3K133lDo5fQdpXtCCoVq9les4Kv4Q/exec'
     }
 };
 
