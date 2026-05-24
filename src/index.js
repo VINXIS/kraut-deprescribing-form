@@ -24,7 +24,7 @@ const getLocationConfig = () => {
 };
 
 const renderInvalidUrlMessage = () => {
-    const exampleUrl = `${window.location.origin}${window.location.pathname}?location=Kingston`;
+    const exampleUrl = `${window.location.origin}${window.location.pathname}?location=ptcc`;
     document.title = 'Invalid URL';
     document.body.innerHTML = `
         <main style="padding: 24px; font-family: Arial, sans-serif;">
