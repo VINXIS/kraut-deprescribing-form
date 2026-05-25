@@ -89,12 +89,12 @@ const evidenceData = {
     },
     'bph-treatment': {
         title: 'BPH Treatment',
-        content: `<p>Do not treat frail older adults who are incontinent with BPH medications.</p>
+        content: `<p>Generally, drug treatment should not be used for those who make no attempt to toilet when aided, become agitated with toileting, or are so functionally and cognitively impaired that there is no prospect of meaningful benefit.</p>
         <p class="evidence-source">STOPPFrail guidelines (<a href="https://academic.oup.com/ageing/article/50/2/465/5913318?login=false" target="_blank" rel="noopener noreferrer">Curtin 2020</a>)</p>`
     },
     'overactive-bladder': {
         title: 'Overactive Bladder',
-        content: `<p>Do not treat frail older adults who are incontinent with overactive bladder (OAB) medications.</p>
+        content: `<p>Generally, drug treatment should not be used for those who make no attempt to toilet when aided, become agitated with toileting, or are so functionally and cognitively impaired that there is no prospect of meaningful benefit.</p>
         <p class="evidence-source">International Consultation on Incontinence (<a href="https://onlinelibrary.wiley.com/doi/10.1002/nau.24549" target="_blank" rel="noopener noreferrer">Gibson 2020</a>)</p>`
     },
     'antihyperglycemic': {
