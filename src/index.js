@@ -89,7 +89,7 @@ const evidenceData = {
     },
     'bph-treatment': {
         title: 'BPH Treatment',
-        content: `<p>Generally, drug treatment should not be used for those who make no attempt to toilet when aided, become agitated with toileting, or are so functionally and cognitively impaired that there is no prospect of meaningful benefit.</p>
+        content: `<p>Do not treat frail older adults who are incontinent with BPH medications.</p>
         <p class="evidence-source">STOPPFrail guidelines (<a href="https://academic.oup.com/ageing/article/50/2/465/5913318?login=false" target="_blank" rel="noopener noreferrer">Curtin 2020</a>)</p>`
     },
     'overactive-bladder': {
