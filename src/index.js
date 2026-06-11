@@ -5,12 +5,12 @@ const LOCATION_CONFIG = {
     },
     ptcc: {
         label: 'Kingston PTCC',
-        scriptUrl: 'https://script.google.com/macros/s/AKfycbxrKSR86k3dj_1MEP0oQrnmJJlFrTZuKRx-Hr-SdST9rEG4rCmxnn4Nqo7hhpDYVxosdA/exec',
-        roomNumberLabel: 'PCC Identification Number'
+        scriptUrl: 'https://script.google.com/macros/s/AKfycbxrKSR86k3dj_1MEP0oQrnmJJlFrTZuKRx-Hr-SdST9rEG4rCmxnn4Nqo7hhpDYVxosdA/exec'
     },
     rideaucrest: {
         label: 'Kingston Rideaucrest',
-        scriptUrl: 'https://script.google.com/macros/s/AKfycbzyflzrCy6aNZQ9zCx5nxwW6QNjDp7EwW44x8nrp3K133lDo5fQdpXtCCoVq9les4Kv4Q/exec'
+        scriptUrl: 'https://script.google.com/macros/s/AKfycbzyflzrCy6aNZQ9zCx5nxwW6QNjDp7EwW44x8nrp3K133lDo5fQdpXtCCoVq9les4Kv4Q/exec',
+        roomNumberLabel: 'PCC Identification Number'
     }
 };
 
