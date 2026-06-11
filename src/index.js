@@ -5,7 +5,8 @@ const LOCATION_CONFIG = {
     },
     ptcc: {
         label: 'Kingston PTCC',
-        scriptUrl: 'https://script.google.com/macros/s/AKfycbxrKSR86k3dj_1MEP0oQrnmJJlFrTZuKRx-Hr-SdST9rEG4rCmxnn4Nqo7hhpDYVxosdA/exec'
+        scriptUrl: 'https://script.google.com/macros/s/AKfycbxrKSR86k3dj_1MEP0oQrnmJJlFrTZuKRx-Hr-SdST9rEG4rCmxnn4Nqo7hhpDYVxosdA/exec',
+        roomNumberLabel: 'PCC Identification Number'
     },
     rideaucrest: {
         label: 'Kingston Rideaucrest',
@@ -44,6 +45,9 @@ if (!locationConfig || !locationConfig.scriptUrl) {
 }
 
 const GOOGLE_SCRIPT_URL = locationConfig.scriptUrl;
+
+const ROOM_NUMBER_LABEL = locationConfig.roomNumberLabel || 'Room Number';
+document.querySelector('label[for="roomNumber"]').textContent = `${ROOM_NUMBER_LABEL}:`;
 
 // Evidence database
 const evidenceData = {
@@ -261,7 +265,7 @@ document.getElementById('savePatientInfo').addEventListener('click', function() 
     const sticker = document.getElementById('patientSticker');
     sticker.innerHTML = `
         <div class="patient-info">
-            Room: ${patientInfo.roomNumber}<br>
+            ${locationConfig.roomNumberLabel || 'Room'}: ${patientInfo.roomNumber}<br>
             DOB: ${patientInfo.dob}<br>
             Sex: ${patientInfo.sex}<br>
             Physician: ${patientInfo.physician}<br>
