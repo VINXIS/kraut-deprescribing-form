@@ -108,8 +108,8 @@ const evidenceData = {
     },
     'acetaminophen': {
         title: 'Acetaminophen',
-        content: `<p>No evidence of improvement in pain.</p>
-        <p class="evidence-source">Acetaminophen usage in long-term care (<a href="https://www.jamda.com/article/S1525-8610(25)00239-7/fulltext" target="_blank" rel="noopener noreferrer">Kraut 2025</a>)</p>`
+        content: `<p>No evidence that regularly scheduled acetaminophen improves pain in long-term care residents with moderate-to-severe dementia, with mild to moderate pain. While a small benefit cannot be ruled out, it should be weighed against the downsides of taking another regular medication, including increased pill burden, a greater risk of medication interactions and medication errors, and requiring nursing time that could otherwise be spent providing direct patient care.</p>
+        <p class="evidence-source">Systematic review and meta-analysis (currently in peer review)</p>`
     },
     'melatonin': {
         title: 'Melatonin',
